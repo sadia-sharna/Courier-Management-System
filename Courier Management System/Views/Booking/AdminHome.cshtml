@@ -1,0 +1,183 @@
+﻿
+@model IEnumerable<Courier_Management_System.Models.BookingWidgetViewModel>
+@{
+    ViewBag.Title = "Pickup Request";
+    Layout = null;
+}
+<!doctype html>
+<html large="en">
+<head>
+    <meta charset="utf-8">
+    <title>Easy Courier</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .pic {
+       
+        margin-left:20px;
+        margin-right:20px;
+        
+    }
+
+    
+    .nav {
+        background-color: midnightblue;
+        list-style: none;
+        text-align: center;
+        color: lightseagreen;
+        padding: 10px 0 10px 0;
+        overflow: hidden;
+    }
+
+        .nav > li {
+            display: inline-block;
+            padding: 0 25px 0 25px;
+        }
+
+            .nav > li > a {
+                text-decoration: none;
+                color: lightpink;
+            }
+
+                .nav > li > a:hover {
+                    color: darkslategrey;
+                }
+
+    .field {
+        height: 100%;
+        width: 98%;
+        padding: 0 px;
+        margin: 0px;
+    }
+
+        .field > ul {
+            text-align: center;
+            font-size: 30px;
+            color: blue;
+            font-family: Calibri;
+        }
+
+</style>
+
+<body>
+
+    <ul class="nav">
+        <li style="color:papayawhip;font-size:30px;padding:0px;margin:0px;">EASY COURIER</li>
+        <li>@Html.ActionLink("Pickup Request", "AdminHome", "booking")</li>
+        <li>@Html.ActionLink("Delivery Man", "showDeliveryman", "DeliveryMan")</li>
+        <li>@Html.ActionLink("Logout", "Logout", "usersite")</li>
+
+
+    </ul>
+
+
+    <ul class="pic">
+        <img src="~/Content/Images/background3.jpg" alt="..." style="width:100%">
+    </ul>
+    <h2 style="margin-bottom:50px;margin-left:60px;margin-top:50px;color:maroon">PICKUP REQUEST</h2>
+
+    <fieldset class="field">
+
+
+        @if (Model != null)
+        {
+            <div class="table-responsive" style="height:50px">
+                <table class=" table table-hover table-bordered text-center" style="width:150px;margin-left:120px">
+                    <thread>
+
+                        <tr class="list-group-item-text" style="background-color:darksalmon">
+                            <th>Booking ID</th>
+                           
+                            <th>Sender Address</th>
+                            <th>Sender Area</th>
+                            <th>Sender Phone no</th>
+                            <th>Receiver Name</th>
+                            <th>Receiver Address</th>
+                            <th>Receiver Area</th>
+                            <th>Receiver Phone no</th>
+                            <th>Weight</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Cost</th>
+                            <th>Status</th>
+
+
+                        </tr>
+
+                    </thread>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.bID</td>
+                            
+                            <td>@item.bOriginAddress</td>
+                            <td>@item.bOriginArea</td>
+                            <td>@item.bOriginPhoneNo</td>
+                            <td>@item.bDestFirstName</td>
+
+                            <td>@item.bDestAddress</td>
+                            <td>@item.bDestArea</td>
+                            <td>@item.bDestPhoneNo</td>
+                            <td>@item.bWeight</td>
+                            <td>@item.bDescription</td>
+                            <td>@item.bTye</td>
+                            <td>@item.bCost</td>
+                           
+                            @{
+                                string s = item.status;
+                                int i = item.bID;
+                            }
+
+                            @{if (s == null)
+                             {
+                        <td>Approve</td>
+                                }
+                                else
+                                {
+
+                                    if (s == "Approve")
+                                    {
+                                        Session["HelloID"] = i;
+
+
+                        <td><button>@Html.ActionLink(s, "TrackView", "Tracking")</button></td>
+                       
+                       
+                        }
+                        else
+                        {
+                        <td>@item.status</td>
+
+                        }
+                        }
+                            }
+                        </tr>
+                        }
+                        <tr></tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        }
+
+    </fieldset>
+
+    
+
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,66 @@
+﻿@model Courier_Management_System.Models.RegistrationViewModel
+@{
+    ViewBag.Title = "Registration";
+}
+
+
+<div class="panel panel-body"  style="margin-top:60px">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="thumbnail">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Register</h1>
+                    </div>
+                    <div class="img-">
+                        <img src="~/Content/Images/regi1.png" alt="..." style="margin-top:2px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <form id="RegistrationForm">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.username, new { @class = "form-control",@placeholder="Username" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.emailid, new { @class = "form-control",@placeholder = "Emailid" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.address, new { @class = "form-control", @placeholder = "Address" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <a href="#" class="btn btn-primary" onclick="RegisterUser()">Submit</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var RegisterUser = function () {
+        var data = $("#RegistrationForm").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/usersite/RegisterUser",
+            data: data,
+            success: function (response) {
+                window.location.href = "/usersite/Login";
+            }
+
+        
+        })
+    }
+</script>

@@ -1,0 +1,154 @@
+﻿@model Courier_Management_System.Models.booking
+
+@{
+    ViewBag.Title = "BookingWidget";
+
+}
+
+<h2>BookingWidget</h2>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="img-">
+    <img src="~/Content/Images/background3.jpg" alt="..." style="width:100%;margin-left:10px">
+</div>
+
+<h2 style="margin-top:30px;font-family:'Times New Roman', Times, serif;color:midnightblue;margin-bottom:30px">BookingWidget</h2>
+<div class="col-md-9">
+    @using (Html.BeginForm("BookingWidget", "Booking", FormMethod.Post))
+    {
+        <form id="BookingForm">
+            <fieldset>
+                <legend>Origin Info:</legend>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bOriginFirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bOriginLastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bOriginAddress, new { @class = "form-control", @placeholder = "Address:(eg:House no: ,Area name:)" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(m => m.bOriginArea, new List<SelectListItem>
+                       { new SelectListItem{Text="Dhaka", Value="Dhaka"},
+                         new SelectListItem{Text="Sylhet", Value="Sylhet"},
+                         new SelectListItem{Text="Rajshahi", Value="Rajshahi"},
+                         new SelectListItem{Text="Chittagong", Value="Chittagong"},
+                         new SelectListItem{Text="Mymenshingh", Value="Mymenshingh"},
+                         new SelectListItem{Text="Khulna", Value="Khulna"},
+                         new SelectListItem{Text="Rangpur", Value="Rangpur"}},
+                                "Please select")
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bOriginPhoneNo, new { @class = "form-control", @placeholder = "Phone No:" })
+                    </div>
+                </div>
+
+            </fieldset>
+            <fieldset style="margin-top:30px">
+                <legend>Destination Info:</legend>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bDestFirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bDestLastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bDestAddress, new { @class = "form-control", @placeholder = "Address:(eg: House no: , Area name:):" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(m => m.bDestArea, new List<SelectListItem>
+{new SelectListItem{Text="Dhaka", Value="Dhaka"},
+                         new SelectListItem{Text="Sylhet", Value="Sylhet"},
+                         new SelectListItem{Text="Rajshahi", Value="Rajshahi"},
+                         new SelectListItem{Text="Chittagong", Value="Chittagong"},
+                         new SelectListItem{Text="Mymenshingh", Value="Mymenshingh"},
+                         new SelectListItem{Text="Khulna", Value="Khulna"},
+                         new SelectListItem{Text="Rangpur", Value="Rangpur"}},
+         "Please select")
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bDestPhoneNo, new { @class = "form-control", @placeholder = "Phone No:" })
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset style="margin-top:30px">
+                <legend>Booking Info:</legend>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bWeight, new { @class = "form-control", @placeholder = "Weight (Max Weight: 32kg)" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(m => m.bDescription, new { @class = "form-control", @placeholder = "Description:" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(m => m.bTye, new List<SelectListItem>
+
+                         {
+                         new SelectListItem{Text="Regular", Value="Regular"},
+                         new SelectListItem{Text="Emergency", Value="Emergency"}},
+                   "Please select")
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Submit" />
+
+                </div>
+            </div>
+
+           
+
+
+
+        </form>
+    }
+  
+
+</div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@if (Model != null)
+{
+    <script type="text/javascript">
+            $(function () {
+                alert("Your Booking ID is: " + @Model.bID + " \n"+"Your total cost is: "+@Model.bCost+"\nPlease save your booking ID to track your courier. ");
+                
+            });
+    </script>
+}

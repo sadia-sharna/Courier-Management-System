@@ -1,0 +1,161 @@
+﻿
+@model IEnumerable<Courier_Management_System.Models.deliveryMan>
+
+@{
+   
+    Layout = null;
+
+}
+
+
+
+
+
+
+<!doctype html>
+<html large="en">
+<head>
+    <meta charset="utf-8">
+    <title>Easy Courier</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .pic {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .nav {
+        background-color: midnightblue;
+        list-style: none;
+        text-align: center;
+        color: lightseagreen;
+        padding: 10px 0 10px 0;
+        overflow: hidden;
+    }
+
+        .nav > li {
+            display: inline-block;
+            padding: 0 25px 0 25px;
+        }
+
+            .nav > li > a {
+                text-decoration: none;
+                color: lightpink;
+            }
+
+                .nav > li > a:hover {
+                    color: darkslategrey;
+                }
+
+    .field {
+        height: 100%;
+        width: 98%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .field > ul {
+            text-align: center;
+            font-size: 30px;
+            color: blue;
+            font-family: Calibri;
+        }
+</style>
+
+<body>
+
+    <ul class="nav">
+        <li style="color:papayawhip;font-size:30px;padding:0px;margin:0px;">EASY COURIER</li>
+        <li>@Html.ActionLink("Pickup Request", "AdminHome", "booking")</li>
+        <li>@Html.ActionLink("Delivery Man", "showDeliveryman", "DeliveryMan")</li>
+       <li>@Html.ActionLink("Logout", "Logout", "usersite")</li>
+
+
+    </ul>
+
+
+    <ul class="pic">
+        <img src="~/Content/Images/background3.jpg" alt="..." style="width:100%">
+    </ul>
+    <h2 style="margin-bottom:50px;margin-left:60px;margin-top:50px;color:maroon">Delivery Man Info</h2>
+    <div style="margin-top:30px ;margin-bottom:30px">
+        <form>
+            <div class="form-group">
+                <div class="col-md-12" style="margin-left:600px;font-size:30px;text-decoration:wavy;">
+
+                    <button> @Html.ActionLink("ADD", "addDeliveryMan", "DeliveryMan") </button>
+                    
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <fieldset class="field">
+
+
+        @if (Model != null)
+        {
+            <div class="table-responsive" style="height:50px">
+                <table class=" table table-hover table-bordered text-center" style="width: 1100px;margin-left:100px">
+                    <thread>
+
+                        <tr class="list-group-item-text" style="background-color:darksalmon">
+                            <th> ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th> Address</th>
+                            <th>Salary</th>
+                            <th>Phone no</th>
+
+
+
+                        </tr>
+
+                    </thread>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.dID</td>
+                                <td>@item.dFirstName</td>
+
+                                <td>@item.dLastName</td>
+                                <td>@item.dAddress</td>
+                                <td>@item.dSalary</td>
+                                <td>@item.dPhoneNo</td>
+
+                            </tr>
+                        }
+                        <tr></tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        }
+
+    </fieldset>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+

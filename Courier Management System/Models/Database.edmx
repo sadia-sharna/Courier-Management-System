@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AreaInfo">
+          <Key>
+            <PropertyRef Name="aAreaName" />
+          </Key>
+          <Property Name="aAreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aAreaName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="aCost" Type="float" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="bID" />
+          </Key>
+          <Property Name="bID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bOriginFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="bOriginLastName" Type="varchar" MaxLength="50" />
+          <Property Name="bOriginAddress" Type="varchar" MaxLength="50" />
+          <Property Name="bOriginPhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="bDestFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="bDestLastName" Type="varchar" MaxLength="50" />
+          <Property Name="bDestAddress" Type="varchar" MaxLength="50" />
+          <Property Name="bDestPhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="bWeight" Type="float" />
+          <Property Name="bDescription" Type="varchar" MaxLength="50" />
+          <Property Name="bTye" Type="varchar" MaxLength="20" />
+          <Property Name="bCost" Type="float" />
+          <Property Name="id" Type="bigint" />
+          <Property Name="dID" Type="int" />
+          <Property Name="bOriginArea" Type="varchar" MaxLength="50" />
+          <Property Name="bDestArea" Type="varchar" MaxLength="50" />
+          <Property Name="bOriginCost" Type="float" />
+          <Property Name="bDestCost" Type="float" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="deliveryMen">
+          <Key>
+            <PropertyRef Name="dID" />
+          </Key>
+          <Property Name="dID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="dLastName" Type="varchar" MaxLength="50" />
+          <Property Name="dPhoneNo" Type="int" />
+          <Property Name="dSalary" Type="int" />
+          <Property Name="dAddress" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="siteuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="emailid" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="char" MaxLength="10" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="usertype" Type="int" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="trackiingID" />
+          </Key>
+          <Property Name="trackiingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bID" Type="int" />
+          <Property Name="diD" Type="int" />
+        </EntityType>
+        <Association Name="FK_Tracking_booking">
+          <End Role="booking" Type="Self.booking" Multiplicity="0..1" />
+          <End Role="Tracking" Type="Self.Tracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="bID" />
+            </Principal>
+            <Dependent Role="Tracking">
+              <PropertyRef Name="bID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tracking_deliveryMen">
+          <End Role="deliveryMen" Type="Self.deliveryMen" Multiplicity="0..1" />
+          <End Role="Tracking" Type="Self.Tracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryMen">
+              <PropertyRef Name="dID" />
+            </Principal>
+            <Dependent Role="Tracking">
+              <PropertyRef Name="diD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userID">
+          <End Role="siteuser" Type="Self.siteuser" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="AreaInfo" EntityType="Self.AreaInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deliveryMen" EntityType="Self.deliveryMen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siteuser" EntityType="Self.siteuser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tracking" EntityType="Self.Tracking" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tracking_booking" Association="Self.FK_Tracking_booking">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="Tracking" EntitySet="Tracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tracking_deliveryMen" Association="Self.FK_Tracking_deliveryMen">
+            <End Role="deliveryMen" EntitySet="deliveryMen" />
+            <End Role="Tracking" EntitySet="Tracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userID" Association="Self.FK_userID">
+            <End Role="siteuser" EntitySet="siteuser" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Courier_Management_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AreaInfoes" EntityType="DatabaseModel.AreaInfo" />
+          <EntitySet Name="bookings" EntityType="DatabaseModel.booking" />
+          <EntitySet Name="deliveryMen" EntityType="DatabaseModel.deliveryMan" />
+          <EntitySet Name="siteusers" EntityType="DatabaseModel.siteuser" />
+          <AssociationSet Name="FK_userID" Association="DatabaseModel.FK_userID">
+            <End Role="siteuser" EntitySet="siteusers" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <EntitySet Name="Trackings" EntityType="DatabaseModel.Tracking" />
+          <AssociationSet Name="FK_Tracking_booking" Association="DatabaseModel.FK_Tracking_booking">
+            <End Role="booking" EntitySet="bookings" />
+            <End Role="Tracking" EntitySet="Trackings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tracking_deliveryMen" Association="DatabaseModel.FK_Tracking_deliveryMen">
+            <End Role="deliveryMan" EntitySet="deliveryMen" />
+            <End Role="Tracking" EntitySet="Trackings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AreaInfo">
+          <Key>
+            <PropertyRef Name="aAreaName" />
+          </Key>
+          <Property Name="aAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aAreaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aCost" Type="Double" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="bID" />
+          </Key>
+          <Property Name="bID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bOriginFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bOriginLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bOriginAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bOriginPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bDestFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bDestLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bDestAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bDestPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bWeight" Type="Double" />
+          <Property Name="bDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bTye" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="bCost" Type="Double" />
+          <Property Name="id" Type="Int64" />
+          <Property Name="dID" Type="Int32" />
+          <Property Name="bOriginArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bDestArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bOriginCost" Type="Double" />
+          <Property Name="bDestCost" Type="Double" />
+          <NavigationProperty Name="siteuser" Relationship="DatabaseModel.FK_userID" FromRole="booking" ToRole="siteuser" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trackings" Relationship="DatabaseModel.FK_Tracking_booking" FromRole="booking" ToRole="Tracking" />
+        </EntityType>
+        <EntityType Name="deliveryMan">
+          <Key>
+            <PropertyRef Name="dID" />
+          </Key>
+          <Property Name="dID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dPhoneNo" Type="Int32" />
+          <Property Name="dSalary" Type="Int32" />
+          <Property Name="dAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trackings" Relationship="DatabaseModel.FK_Tracking_deliveryMen" FromRole="deliveryMan" ToRole="Tracking" />
+        </EntityType>
+        <EntityType Name="siteuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usertype" Type="Int32" />
+          <NavigationProperty Name="bookings" Relationship="DatabaseModel.FK_userID" FromRole="siteuser" ToRole="booking" />
+        </EntityType>
+        <Association Name="FK_userID">
+          <End Type="DatabaseModel.siteuser" Role="siteuser" Multiplicity="0..1" />
+          <End Type="DatabaseModel.booking" Role="booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="trackiingID" />
+          </Key>
+          <Property Name="trackiingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bID" Type="Int32" />
+          <Property Name="diD" Type="Int32" />
+          <NavigationProperty Name="booking" Relationship="DatabaseModel.FK_Tracking_booking" FromRole="Tracking" ToRole="booking" />
+          <NavigationProperty Name="deliveryMan" Relationship="DatabaseModel.FK_Tracking_deliveryMen" FromRole="Tracking" ToRole="deliveryMan" />
+        </EntityType>
+        <Association Name="FK_Tracking_booking">
+          <End Type="DatabaseModel.booking" Role="booking" Multiplicity="0..1" />
+          <End Type="DatabaseModel.Tracking" Role="Tracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="bID" />
+            </Principal>
+            <Dependent Role="Tracking">
+              <PropertyRef Name="bID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tracking_deliveryMen">
+          <End Type="DatabaseModel.deliveryMan" Role="deliveryMan" Multiplicity="0..1" />
+          <End Type="DatabaseModel.Tracking" Role="Tracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryMan">
+              <PropertyRef Name="dID" />
+            </Principal>
+            <Dependent Role="Tracking">
+              <PropertyRef Name="diD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="Courier_Management_SystemEntities">
+          <EntitySetMapping Name="AreaInfoes">
+            <EntityTypeMapping TypeName="DatabaseModel.AreaInfo">
+              <MappingFragment StoreEntitySet="AreaInfo">
+                <ScalarProperty Name="aCost" ColumnName="aCost" />
+                <ScalarProperty Name="aAreaName" ColumnName="aAreaName" />
+                <ScalarProperty Name="aAreaID" ColumnName="aAreaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="DatabaseModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="bDestCost" ColumnName="bDestCost" />
+                <ScalarProperty Name="bOriginCost" ColumnName="bOriginCost" />
+                <ScalarProperty Name="bDestArea" ColumnName="bDestArea" />
+                <ScalarProperty Name="bOriginArea" ColumnName="bOriginArea" />
+                <ScalarProperty Name="dID" ColumnName="dID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="bCost" ColumnName="bCost" />
+                <ScalarProperty Name="bTye" ColumnName="bTye" />
+                <ScalarProperty Name="bDescription" ColumnName="bDescription" />
+                <ScalarProperty Name="bWeight" ColumnName="bWeight" />
+                <ScalarProperty Name="bDestPhoneNo" ColumnName="bDestPhoneNo" />
+                <ScalarProperty Name="bDestAddress" ColumnName="bDestAddress" />
+                <ScalarProperty Name="bDestLastName" ColumnName="bDestLastName" />
+                <ScalarProperty Name="bDestFirstName" ColumnName="bDestFirstName" />
+                <ScalarProperty Name="bOriginPhoneNo" ColumnName="bOriginPhoneNo" />
+                <ScalarProperty Name="bOriginAddress" ColumnName="bOriginAddress" />
+                <ScalarProperty Name="bOriginLastName" ColumnName="bOriginLastName" />
+                <ScalarProperty Name="bOriginFirstName" ColumnName="bOriginFirstName" />
+                <ScalarProperty Name="bID" ColumnName="bID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deliveryMen">
+            <EntityTypeMapping TypeName="DatabaseModel.deliveryMan">
+              <MappingFragment StoreEntitySet="deliveryMen">
+                <ScalarProperty Name="dAddress" ColumnName="dAddress" />
+                <ScalarProperty Name="dSalary" ColumnName="dSalary" />
+                <ScalarProperty Name="dPhoneNo" ColumnName="dPhoneNo" />
+                <ScalarProperty Name="dLastName" ColumnName="dLastName" />
+                <ScalarProperty Name="dFirstName" ColumnName="dFirstName" />
+                <ScalarProperty Name="dID" ColumnName="dID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siteusers">
+            <EntityTypeMapping TypeName="DatabaseModel.siteuser">
+              <MappingFragment StoreEntitySet="siteuser">
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trackings">
+            <EntityTypeMapping TypeName="DatabaseModel.Tracking">
+              <MappingFragment StoreEntitySet="Tracking">
+                <ScalarProperty Name="diD" ColumnName="diD" />
+                <ScalarProperty Name="bID" ColumnName="bID" />
+                <ScalarProperty Name="trackiingID" ColumnName="trackiingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿@model Courier_Management_System.Models.Tracking
+
+@{
+    ViewBag.Title = "TrackingWidget";
+}
+
+
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="img-">
+    <img src="~/Content/Images/background3.jpg" alt="..." style="width:100%;margin-left:10px">
+</div>
+
+<h2 style="margin-top:30px;font-family:'Times New Roman', Times, serif;color:midnightblue;margin-bottom:30px">TrackingWidget</h2>
+
+<div class="col-md-9">
+    @using (Html.BeginForm("addDeliveryMan", "DeliveryMan", FormMethod.Post))
+    {
+        <form id="TrackingForm">
+            <fieldset>
+                <legend>Track Your Courier:</legend>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.bID, new { @class = "form-control", @placeholder = "Enter your Booking Number" })
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <a href="#" class="btn btn-primary" onclick="TrackingButton()">Submit</a>
+                </div>
+            </div>
+
+
+
+
+
+        </form>
+    }
+
+
+</div>
+<script>
+    var TrackingButton = function () {
+        var data = $("#TrackingForm").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Tracking/TrackingButton",
+            data: data,
+            success: function (response) {
+                   alert("Your Booking ID is: " + response +"\nPlease save your booking ID to track your courier. ");
+
+            }
+
+
+        })
+    }
+</script>
+

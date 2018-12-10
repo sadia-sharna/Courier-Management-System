@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Courier Management</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:midnightblue">
+        <div class="container" style="background-color:midnightblue">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Easy Courier", "IndexView", "usersite", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "IndexView", "usersite")</li>
+                    <li>@Html.ActionLink("Booking Widget", "BookingWidget", "booking")</li>
+                    <li>@Html.ActionLink("Tracking Widget", "TrackingWidget", "Tracking")</li>
+                </ul>
+                @if (Session["UserId"] != null)
+    {
+            <ul class="navbar-right">
+                <li>@Html.ActionLink("Logout", "Logout", "usersite")</li>
+            </ul>
+            <ul class="navbar-right">
+                @{ 
+                    string s = (string)Session["UserName"];
+                }
+                <li>@Html.ActionLink("Welcome "+s, "#", "usersite")</li>
+            </ul>
+}
+else
+     {
+            <ul class="navbar-right">
+                <li>@Html.ActionLink("Register", "Registration", "usersite")</li>
+            </ul>
+            <ul class="navbar-right">
+                <li>@Html.ActionLink("Login", "Login", "usersite")</li>
+            </ul>
+     }
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

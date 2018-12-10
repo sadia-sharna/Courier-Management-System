@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="Courier_Management_SystemEntities">
+    <EntitySetMapping Name="AreaInfoes">
+      <EntityTypeMapping TypeName="DatabaseModel.AreaInfo">
+        <MappingFragment StoreEntitySet="AreaInfo">
+          <ScalarProperty Name="aCost" ColumnName="aCost" />
+          <ScalarProperty Name="aAreaName" ColumnName="aAreaName" />
+          <ScalarProperty Name="aAreaID" ColumnName="aAreaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookings">
+      <EntityTypeMapping TypeName="DatabaseModel.booking">
+        <MappingFragment StoreEntitySet="booking">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="bDestCost" ColumnName="bDestCost" />
+          <ScalarProperty Name="bOriginCost" ColumnName="bOriginCost" />
+          <ScalarProperty Name="bDestArea" ColumnName="bDestArea" />
+          <ScalarProperty Name="bOriginArea" ColumnName="bOriginArea" />
+          <ScalarProperty Name="dID" ColumnName="dID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="bCost" ColumnName="bCost" />
+          <ScalarProperty Name="bTye" ColumnName="bTye" />
+          <ScalarProperty Name="bDescription" ColumnName="bDescription" />
+          <ScalarProperty Name="bWeight" ColumnName="bWeight" />
+          <ScalarProperty Name="bDestPhoneNo" ColumnName="bDestPhoneNo" />
+          <ScalarProperty Name="bDestAddress" ColumnName="bDestAddress" />
+          <ScalarProperty Name="bDestLastName" ColumnName="bDestLastName" />
+          <ScalarProperty Name="bDestFirstName" ColumnName="bDestFirstName" />
+          <ScalarProperty Name="bOriginPhoneNo" ColumnName="bOriginPhoneNo" />
+          <ScalarProperty Name="bOriginAddress" ColumnName="bOriginAddress" />
+          <ScalarProperty Name="bOriginLastName" ColumnName="bOriginLastName" />
+          <ScalarProperty Name="bOriginFirstName" ColumnName="bOriginFirstName" />
+          <ScalarProperty Name="bID" ColumnName="bID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deliveryMen">
+      <EntityTypeMapping TypeName="DatabaseModel.deliveryMan">
+        <MappingFragment StoreEntitySet="deliveryMen">
+          <ScalarProperty Name="dAddress" ColumnName="dAddress" />
+          <ScalarProperty Name="dSalary" ColumnName="dSalary" />
+          <ScalarProperty Name="dPhoneNo" ColumnName="dPhoneNo" />
+          <ScalarProperty Name="dLastName" ColumnName="dLastName" />
+          <ScalarProperty Name="dFirstName" ColumnName="dFirstName" />
+          <ScalarProperty Name="dID" ColumnName="dID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siteusers">
+      <EntityTypeMapping TypeName="DatabaseModel.siteuser">
+        <MappingFragment StoreEntitySet="siteuser">
+          <ScalarProperty Name="usertype" ColumnName="usertype" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="emailid" ColumnName="emailid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trackings">
+      <EntityTypeMapping TypeName="DatabaseModel.Tracking">
+        <MappingFragment StoreEntitySet="Tracking">
+          <ScalarProperty Name="diD" ColumnName="diD" />
+          <ScalarProperty Name="bID" ColumnName="bID" />
+          <ScalarProperty Name="trackiingID" ColumnName="trackiingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
