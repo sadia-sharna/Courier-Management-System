@@ -4,9 +4,9 @@ This is a website for managing a courier system. It is developed for both admin 
 #Tools: Microsoft Visual Studio 2017,MVC framework, Entity framework, C#
 
 ##Features for User:
-1. User can give a bookiing for sending a parcel to any district of Bangladesh.
+1. User can give a booking for sending a parcel to any district of Bangladesh.
 2. User gets a booking ID after giving a booking.
-3. They also get the delivery man info who is carrying their parcel in tracking window. 
+3. They also get the delivery man’s info carrying their parcel in tracking page. 
 
 
 ##Features for Admin:
