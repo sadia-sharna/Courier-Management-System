@@ -1,5 +1,7 @@
 # Courier-Management-System
-This is a website for managing a courier system. It is developed for both admin and user. User from anywhere in Bangladesh can send/receive their parcel and admin assigns the bookings to a deliveryman for shipping. Tools: Microsoft Visual Studio 2017,MVC framework, Entity framework, C#
+This is a website for managing a courier system. It is developed for both admin and user. User from anywhere in Bangladesh can send/receive their parcel and admin assigns the bookings to a deliveryman for shipping. 
+
+#Tools: Microsoft Visual Studio 2017,MVC framework, Entity framework, C#
 
 ##Features for User:
 1. User can give a bookiing for sending a parcel to any district of Bangladesh.
